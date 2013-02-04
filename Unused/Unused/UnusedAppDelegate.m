@@ -27,6 +27,7 @@
 @synthesize searchButton=_searchButton;
 @synthesize exportButton=_exportButton;
 @synthesize searchDirectoryPath=_searchDirectoryPath;
+@synthesize imageView=_imageView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -430,6 +431,12 @@
     }
 
     return pngPath;
+}
+
+-(void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    NSString *path = [_results objectAtIndex:[_resultsTableView selectedRow]];
+    _imageView.image = [[NSImage alloc] initByReferencingFile:path];
 }
 
 -(void)tableViewDoubleClicked
